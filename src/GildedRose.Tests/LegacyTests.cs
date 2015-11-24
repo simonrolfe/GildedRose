@@ -19,12 +19,12 @@ namespace GildedRose.Tests
 
             p.UpdateQuality();
 
-            Assert.Equal(item.Quality, 19);
-            Assert.Equal(item.SellIn, 9);
+            Assert.Equal(19, item.Quality);
+            Assert.Equal(9, item.SellIn);
 
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 18);
-            Assert.Equal(item.SellIn, 8);
+            Assert.Equal(18, item.Quality);
+            Assert.Equal(8, item.SellIn);
         }
 
         [Fact]
@@ -38,12 +38,12 @@ namespace GildedRose.Tests
 
             p.UpdateQuality();
 
-            Assert.Equal(item.Quality, 6);
-            Assert.Equal(item.SellIn, 4);
+            Assert.Equal(6, item.Quality);
+            Assert.Equal(4, item.SellIn);
 
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 5);
-            Assert.Equal(item.SellIn, 3);
+            Assert.Equal(5, item.Quality);
+            Assert.Equal(3, item.SellIn);
         }
 
         [Fact]
@@ -57,12 +57,12 @@ namespace GildedRose.Tests
 
             p.UpdateQuality();
 
-            Assert.Equal(item.Quality, 80);
-            Assert.Equal(item.SellIn, 0);
+            Assert.Equal(80, item.Quality);
+            Assert.Equal(0, item.SellIn);
 
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 80);
-            Assert.Equal(item.SellIn, 0);
+            Assert.Equal(80, item.Quality);
+            Assert.Equal(0, item.SellIn);
         }
 
         [Fact]
@@ -76,17 +76,17 @@ namespace GildedRose.Tests
 
             p.UpdateQuality();
 
-            Assert.Equal(item.Quality, 1);
-            Assert.Equal(item.SellIn, 1);
+            Assert.Equal(1, item.Quality);
+            Assert.Equal(1, item.SellIn);
 
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 2);
-            Assert.Equal(item.SellIn, 0);
+            Assert.Equal(2, item.Quality);
+            Assert.Equal(0, item.SellIn);
 
             //Extra test to confirm that brie double-improves after SellIn is 0
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 4);
-            Assert.Equal(item.SellIn, -1);
+            Assert.Equal(4, item.Quality);
+            Assert.Equal(-1, item.SellIn);
 
         }
 
@@ -101,18 +101,84 @@ namespace GildedRose.Tests
 
             p.UpdateQuality();
 
-            Assert.Equal(item.Quality, 5);
-            Assert.Equal(item.SellIn, 2);
+            Assert.Equal(5, item.Quality);
+            Assert.Equal(2, item.SellIn);
 
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 4);
-            Assert.Equal(item.SellIn, 1);
+            Assert.Equal(4, item.Quality);
+            Assert.Equal(1, item.SellIn);
 
             p.UpdateQuality();
-            Assert.Equal(item.Quality, 3);
-            Assert.Equal(item.SellIn, 0);
+            Assert.Equal(3, item.Quality);
+            Assert.Equal(0, item.SellIn);
         }
 
+        [Fact]
+        public void Backstage_Passes_Improve()
+        {
+            Program p = new Program();
 
+            Item item = new Item
+            {
+                Name = "Backstage passes to a TAFKAL80ETC concert",
+                SellIn = 15,
+                Quality = 20
+            };
+
+            p.Items = new List<Item> { item };
+
+            p.UpdateQuality();
+
+            Assert.Equal(21, item.Quality);
+            Assert.Equal(14, item.SellIn);
+
+            p.UpdateQuality();
+            Assert.Equal(22, item.Quality);
+            Assert.Equal(13, item.SellIn);
+
+            p.UpdateQuality();
+            p.UpdateQuality();
+            p.UpdateQuality();
+            Assert.Equal(25, item.Quality);
+            Assert.Equal(10, item.SellIn);
+
+            //at this point we expect the quality to increase by 2 per day
+            p.UpdateQuality();
+            Assert.Equal(27, item.Quality);
+            Assert.Equal(9, item.SellIn);
+
+            p.UpdateQuality();
+            Assert.Equal(29, item.Quality);
+            Assert.Equal(8, item.SellIn);
+
+            p.UpdateQuality();
+            p.UpdateQuality();
+            p.UpdateQuality();
+
+            Assert.Equal(35, item.Quality);
+            Assert.Equal(5, item.SellIn);
+
+            //at this point we expect quality to increase by 3 per day
+            p.UpdateQuality();
+
+            Assert.Equal(38, item.Quality);
+            Assert.Equal(4, item.SellIn);
+
+            p.UpdateQuality();
+
+            Assert.Equal(41, item.Quality);
+            Assert.Equal(3, item.SellIn);
+
+            p.UpdateQuality();
+            p.UpdateQuality();
+            p.UpdateQuality();
+            Assert.Equal(50, item.Quality);
+            Assert.Equal(0, item.SellIn);
+
+            //Quality drops to 0 after SellIn is <0
+            p.UpdateQuality();
+            Assert.Equal(0, item.Quality);
+            Assert.Equal(-1, item.SellIn);
+        }
     }
 }
