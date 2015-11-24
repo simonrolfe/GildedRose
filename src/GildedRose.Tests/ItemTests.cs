@@ -6,7 +6,7 @@ using Xunit;
 namespace GildedRose.Tests
 {
     //Tests to ensure my understanding of the existing logic is correct.
-    public class RefactoredTests
+    public class ItemTests
     {
         [Fact]
         public void DexterityVest_Degrades_1_Per_Day()
@@ -75,7 +75,7 @@ namespace GildedRose.Tests
         }
 
         [Fact]
-        public void Conjured_Mana_Cake_Degrades_Double_Speed_Refactored()
+        public void Conjured_Mana_Cake_Degrades_Double_Speed()
         {
             AbstractItem item = new ManaCake();
 

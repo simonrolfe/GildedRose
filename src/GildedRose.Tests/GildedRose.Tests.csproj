@@ -56,9 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LegacyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RefactoredTests.cs" />
+    <Compile Include="ItemTests.cs" />
     <Compile Include="TestAssemblyTests.cs" />
   </ItemGroup>
   <ItemGroup>
