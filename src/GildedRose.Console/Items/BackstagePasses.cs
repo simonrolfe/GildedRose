@@ -6,20 +6,21 @@
         {
             get
             {
-                if(SellIn > 10)
+                if(SellIn > 9)
                 {
-                    return 1;
+                    return -1;
                 }
-                if(SellIn > 5)
+                if(SellIn > 4)
                 {
-                    return 2;
+                    return -2;
                 }
                 if(SellIn > -1)
                 {
-                    return 3;
+                    return -3;
                 }
 
-                return 0;
+                //if we're past the day of the concert, degrade the passes by a large amount to force their quality to zero.
+                return 100;
             }
         }
 

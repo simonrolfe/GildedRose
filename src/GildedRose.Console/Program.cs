@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using GildedRose.Console.Items;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GildedRose.Console
 {
@@ -13,28 +16,35 @@ namespace GildedRose.Console
                           {
                               Items = new List<Item>
                                           {
-                                              new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                                              new Item {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                                              new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                                              new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                                              new Item
-                                                  {     
-                                                      Name = "Backstage passes to a TAFKAL80ETC concert",
-                                                      SellIn = 15,
-                                                      Quality = 20
-                                                  },
-                                              new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+                                              new DexterityVest(),
+                                              new AgedBrie(),
+                                              new Elixir(),
+                                              new Sulfuras(),
+                                              new BackstagePasses(),
+                                              new ManaCake()
                                           }
 
                           };
 
-            app.UpdateQuality();
+            app.ProcessDay();
 
             System.Console.ReadKey();
 
         }
 
-        public void UpdateQuality()
+        public void ProcessDay()
+        {
+            // Kind of hacky but we should be able to assume all items are now AbstractItems as above. 
+            // I don't like it but the alternative is to put crappy static extensions all over the Item,
+            // or change the Item class (which isn't allowed).
+            foreach(AbstractItem item in Items.OfType<AbstractItem>())
+            {
+                item.ProcessDay();
+            }
+        }
+
+        [Obsolete("This should only be used by the legacy tests to confirm old behaviour. Use ProcessDay instead.")]
+        internal void UpdateQuality()
         {
             for (var i = 0; i < Items.Count; i++)
             {

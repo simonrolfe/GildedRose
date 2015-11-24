@@ -20,6 +20,9 @@
 
         public void ProcessDay()
         {
+            //decrement SellIn
+            DecrementSellin();
+            
             //double-hit degradation if sell-in has passed
             if (HasSellInPassed)
             {
@@ -37,8 +40,10 @@
             {
                 Quality = MinQuality;
             }
+        }
 
-            //decrement SellIn
+        protected virtual void DecrementSellin()
+        {
             SellIn--;
         }
 

@@ -29,6 +29,12 @@
             }
         }
 
+        //Legendary items ever don't need to be sold, so this is sealed and is a no-op.
+        protected sealed override void DecrementSellin()
+        {
+            return;
+        }
+
         public sealed override void DegradeItem()
         {
             return;
