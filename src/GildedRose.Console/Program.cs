@@ -2,9 +2,9 @@
 
 namespace GildedRose.Console
 {
-    class Program
+    internal class Program
     {
-        IList<Item> Items;
+        internal IList<Item> Items;
         static void Main(string[] args)
         {
             System.Console.WriteLine("OMGHAI!");
@@ -18,7 +18,7 @@ namespace GildedRose.Console
                                               new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
                                               new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
                                               new Item
-                                                  {
+                                                  {     
                                                       Name = "Backstage passes to a TAFKAL80ETC concert",
                                                       SellIn = 15,
                                                       Quality = 20
@@ -111,14 +111,4 @@ namespace GildedRose.Console
         }
 
     }
-
-    public class Item
-    {
-        public string Name { get; set; }
-
-        public int SellIn { get; set; }
-
-        public int Quality { get; set; }
-    }
-
 }

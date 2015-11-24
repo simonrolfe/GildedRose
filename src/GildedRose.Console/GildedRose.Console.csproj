@@ -41,6 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\Abstracts\ConjuredItem.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Items\Abstracts\AbstractItem.cs" />
+    <Compile Include="Items\Abstracts\LegendaryItem.cs" />
+    <Compile Include="Items\AgedBrie.cs" />
+    <Compile Include="Items\BackstagePasses.cs" />
+    <Compile Include="Items\DexterityVest.cs" />
+    <Compile Include="Items\Elixir.cs" />
+    <Compile Include="Items\ManaCake.cs" />
+    <Compile Include="Items\Sulfuras.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
